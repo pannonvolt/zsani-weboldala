@@ -5,8 +5,9 @@ window.SITE = {
   tagline: 'MEGÉRKEZÉS ÖNMAGADHOZ',
   email: '',
   phone: '',
-  // A végleges naptárhoz csak ezt a linket kell lecserélni.
-  bookingUrl: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1vcNhoNTD9RmspRHfC6LLWuD5o1rWwsLi5vUK2VAnpoT4Strm8OvczhGFj_6CcmcBm7Z6Mi8yE?gv=true',
+  // Saját Cal.com profil vagy esemény teljes címe.
+  // Az üres érték mellett nincs külső naptárbetöltés vagy foglalás.
+  bookingUrl: 'https://cal.com/haxby-solheim-j7qmyr',
   bookingIsTest: true,
   person: 'A neved helye',
   role: 'A saját bemutatkozásod helye',
