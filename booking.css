@@ -1,0 +1,12 @@
+.booking-panel{border:1px solid var(--line);background:var(--cream);padding:45px 35px}
+.booking-panel>img{margin:0 auto 25px}
+.booking-panel>p{max-width:560px;margin:0 auto 25px;color:var(--muted)}
+.booking-panel .booking-hint{font-size:12px;margin:15px auto 0}
+.booking-steps{text-align:center;gap:15px}
+.booking-steps h3{font-size:24px}
+.booking-calendar{margin-top:25px;background:#fff;border:1px solid var(--line);min-width:0}
+.booking-calendar iframe{display:block;width:100%;height:750px;border:0}
+.booking-fallback{margin-top:25px}
+.booking-fallback p{font-size:12px;color:var(--muted);margin-bottom:12px}
+@media(max-width:720px){.booking-calendar iframe{height:900px}.booking-fallback .button{max-width:100%;font-size:12px;padding-inline:16px}}
+@media(max-width:720px){.booking-panel{padding:35px 20px}.booking-panel .button{width:100%;padding-inline:15px;font-size:12px}.booking-steps{gap:25px}}

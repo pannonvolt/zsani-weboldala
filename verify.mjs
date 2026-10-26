@@ -16,6 +16,27 @@ for(const page of [...pages, 'nem-letezo-oldal']) {
   const rendered = elements.get('main').innerHTML;
   assert(rendered.includes('<h1>'), `${page}: hiányzó főcím`);
   assert(!rendered.includes('undefined'), `${page}: hibás tartalom`);
+  if(page === 'idopontfoglalas') {
+    assert(rendered.includes(ctx.window.SITE.bookingUrl), 'A megadott Google foglalási link jelenik meg.');
+    assert(rendered.includes('<iframe '), 'A naptár közvetlenül beágyazva jelenik meg.');
+    assert(rendered.includes('title="Google Naptár'), 'A beágyazott naptár hozzáférhető címet kap.');
+    assert(!rendered.includes('<form'), 'Az időpontfoglalás nem a korábbi piszkozatűrlapot használja.');
+    assert(rendered.includes('Tesztfoglalási oldal'), 'A személyes tesztnaptár egyértelmű jelzést kap.');
+    ctx.window.SITE.bookingUrl = 'https://calendar.google.com/calendar/appointments/schedules/replacement';
+    ctx.window.SITE.bookingIsTest = false;
+    const replacement = vm.runInContext('booking()', ctx);
+    assert(replacement.includes(ctx.window.SITE.bookingUrl), 'A naptár egy beállítással lecserélhető.');
+    assert(replacement.includes('replacement?gv=true'), 'A cserélt naptár beágyazható nézete megmarad.');
+    assert(!replacement.includes('Tesztfoglalási oldal'), 'A tesztjelzés kikapcsolható.');
+    ctx.window.SITE.bookingUrl = 'https://calendar.app.google/test';
+    const shortLink = vm.runInContext('booking()', ctx);
+    assert(!shortLink.includes('<iframe '), 'A rövidlink nem lesz ellenőrizetlen iframe-forrás.');
+    assert(shortLink.includes('https://calendar.app.google/test'), 'Rövidlinkkel is elérhető marad a naptár.');
+    ctx.window.SITE.bookingUrl = 'javascript:alert(1)';
+    const invalid = vm.runInContext('booking()', ctx);
+    assert(!invalid.includes('javascript:'), 'Hibás hivatkozás nem kerül az oldalra.');
+    assert(invalid.includes('Az online foglalás jelenleg nem elérhető'), 'Hibás link esetén kapcsolatfelvétel érhető el.');
+  }
   assert(!/kosár|Kosár|webshop|Ásványékszer/.test(rendered), `${page}: webshop-tartalom`);
   for(const match of (html+rendered).matchAll(/(?:href|src)="([^"#?]+)(?:[?#][^"]*)?"/g)) {
     const target = match[1];

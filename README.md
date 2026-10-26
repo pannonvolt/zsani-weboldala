@@ -14,6 +14,7 @@ Az oldal címe: http://localhost:4173
 
 - `content.js`: az oldal neve, alcíme, saját név, bemutatkozás, portré, e-mail, telefon, szolgáltatások és blogbejegyzések.
 - `styles.css`: színek, betűk, elrendezés és mobilnézet.
+- `booking.css`: az időpontfoglalási oldal kiegészítő stílusai.
 - `app.js`: az oldalak tartalma és működése.
 - `assets/`: helyi képek, illusztrációk.
 - `index.html`: közös fejléc és lábléc. Módosítása után `node prepare.mjs` frissíti a többi HTML-oldalt.
@@ -28,7 +29,7 @@ Az üres `services` lista miatt szolgáltatáskártyák nem jelennek meg. Késő
 - Blog, kereséssel és témaszűréssel
 - Blogbejegyzés-sablon, három saját mintacikkel
 - Kapcsolat
-- Időpontfoglalás / egyeztetési kérés
+- Időpontfoglalás a Google foglalási oldalán
 - ÁSZF
 - Adatkezelés
 - Impresszum
@@ -36,7 +37,15 @@ Az üres `services` lista miatt szolgáltatáskártyák nem jelennek meg. Késő
 
 ## Űrlapok
 
-Az űrlapok ellenőrzik a kötelező mezőket. Beállított `email` hiányában a felhasználó letöltheti az üzenetét szöveges piszkozatként. Saját e-mail-cím beállítása után a levelezőprogramban nyitnak meg előre kitöltött levelet. Automatikus küldés, szerveroldali tárolás és foglalási naptár nincs csatlakoztatva. Az időpontkérés önmagában nem foglalás.
+A kapcsolatfelvételi űrlap ellenőrzi a kötelező mezőket. Beállított `email` hiányában a felhasználó letöltheti az üzenetét szöveges piszkozatként. Saját e-mail-cím beállítása után a levelezőprogramban nyit meg előre kitöltött levelet. Ez az űrlap nem végez foglalást, szerveroldali küldést vagy tárolást.
+
+## Google időpontfoglalás
+
+Az `idopontfoglalas.html` oldalon a felhasználó által megadott Google foglalási naptár iframe-ben, közvetlenül az oldalba ágyazva jelenik meg. A naptár teljes szélességű, asztali nézetben 750, mobilon 900 pixel magas. Ha a beágyazást a böngésző blokkolja, a naptár egy külön gombbal új lapon is megnyitható. A foglalás a Google felületén történik; a weboldal nem használ külön foglalási adatbázist. Az összes meglévő „Időpontot kérek” hivatkozás erre a helyi oldalra vezet.
+
+A naptár későbbi cseréjéhez a `content.js` fájlban a `bookingUrl` értékét kell átírni az új Google beágyazási kód `src` címére. A `gv=true` beágyazási paraméter automatikusan megmarad. A `bookingIsTest: true` beállítás jelzi, hogy a foglalások még a személyes tesztnaptárba kerülnek. A végleges naptár beállításakor ez `false` értékre állítható. Google rövidlink megadása esetén csak az új lapot nyitó gomb jelenik meg.
+
+A Google foglalási felületének megjelenése és értesítési beállításai a Google-fiókban kezelhetők. A tulajdonos értesítéseit nem módosítottam, próbaidőpontot nem foglaltam. A beágyazás a felhasználó által megadott Google-kód címét használja. Böngészős vizuális ellenőrzés ebben a környezetben nem áll rendelkezésre; a tényleges naptárbetöltést helyi böngészőben kell ellenőrizni.
 
 ## A referencia feldolgozása
 

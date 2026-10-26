@@ -5,6 +5,9 @@ window.SITE = {
   tagline: 'MEGÉRKEZÉS ÖNMAGADHOZ',
   email: '',
   phone: '',
+  // A végleges naptárhoz csak ezt a linket kell lecserélni.
+  bookingUrl: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1vcNhoNTD9RmspRHfC6LLWuD5o1rWwsLi5vUK2VAnpoT4Strm8OvczhGFj_6CcmcBm7Z6Mi8yE?gv=true',
+  bookingIsTest: true,
   person: 'A neved helye',
   role: 'A saját bemutatkozásod helye',
   bio: 'Itt mesélhetsz magadról, az utadról és arról, mi fontos számodra a közös munkában. Ezt a mintaszöveget később a saját történetedre cserélheted.',
